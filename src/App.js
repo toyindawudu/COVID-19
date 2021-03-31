@@ -3,11 +3,7 @@ import {
   FormControl,
   Select,
   MenuItem } from '@material-ui/core';
-<<<<<<< HEAD:src/App.js
 import InfoBox from './InfoBox';
-=======
-import InfoBox from './infoBox';
->>>>>>> 2486523bca67b6f57d4c639b02cbd00e759b93ad:covid-19-tracker/src/App.js
 import './css/main.css';
 
 function App() {
