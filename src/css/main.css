@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+}
+
+.app {
+  padding: 3rem;
+  border: 2px solid red;
+}
+
+.app__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+/*# sourceMappingURL=main.css.map */

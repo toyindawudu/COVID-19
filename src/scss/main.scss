@@ -1,0 +1,14 @@
+*{
+  margin: 0;
+}
+
+.app{
+
+  padding: 3rem;
+  border: 2px solid red;
+
+  &__header{
+    display: flex;
+    justify-content: space-between;
+  }
+}
