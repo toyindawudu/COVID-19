@@ -2,8 +2,10 @@ import React, {useState, useEffect} from 'react';
 import { 
   FormControl,
   Select,
-  MenuItem } from '@material-ui/core';
+  MenuItem,
+  Card } from '@material-ui/core';
 import InfoBox from './InfoBox';
+import Map from './Map';
 import './css/main.css';
 
 function App() {
@@ -35,33 +37,29 @@ function App() {
   }
 
   return (
-    <div className="app">
-      {/* Header*/}
-      <div className="app__header">
-        <h1>COVID-19 Tracker</h1>
-        <FormControl> 
-          <Select variant = "outlined" onChange = {onCountryChange} value = {global}>
-          <MenuItem value = "global">Global</MenuItem>
-          {countries.map(country => (<MenuItem value = {country.value}>{country.name}</MenuItem>))} 
-          </Select>
-        </FormControl>
-      </div>
-
-      <div className="app__stats">
-        <InfoBox title="Coronavirus cases" cases = {1234} total = {2000} />
-        <InfoBox title="Recovered" cases = {1234} total = {5000} />
-        <InfoBox title="Deaths" cases = {1234} total = {3000} />
-
-      </div>
-      {/* InfoBoxs */}
-      
-      {/* InfoBoxs */}
-      {/* InfoBoxs */}
-      
-      {/* Table */}
-      {/* Graphs */}
-
-      {/* Maps */}
+    <div className="app"> 
+      <div className="app__left">
+        <div className="app__header">
+          <h1>COVID-19 Tracker</h1>
+          <FormControl className="app__dropdown"> 
+            <Select variant = "outlined" onChange = {onCountryChange} value = {global} >
+              <MenuItem value = "global">Global</MenuItem>
+              {countries.map(country => (<MenuItem value = {country.value}>{country.name}</MenuItem>))} 
+            </Select>
+          </FormControl>
+        </div>
+        <div className="app__stats">
+          <InfoBox title="Coronavirus cases" cases = {1234} total = {2000} />
+          <InfoBox title="Recovered" cases = {1234} total = {5000} />
+          <InfoBox title="Deaths" cases = {1234} total = {3000} /> 
+        </div>
+            {/* Maps */}
+          <Map /> { /* This is the Map component */ }
+        </div>
+      <Card className="app__right">
+        {/* Table */}
+        {/* Graphs */}
+      </Card>
     </div>
   );
 }
