@@ -3,18 +3,33 @@ import {
   FormControl,
   Select,
   MenuItem,
-  Card } from '@material-ui/core';
+  Card,
+  CardContent } from '@material-ui/core';
 import InfoBox from './InfoBox';
 import Map from './Map';
+import Table from './Table';
 import './css/main.css';
 
 function App() {
 
-  const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState([]); // This creates the default value to be an empty array due to the empty curly braces
   const [global, setCountry] = useState("global");
+  const [countryInfo, setCountryInfo] = useState({}); // This creates the default value to be an empty object due to the empty curly braces
+  const [tableData, setTableData] = useState([]);
+
+
+  useEffect(() => {
+    fetch("https://disease.sh/v3/covid-19/all")
+    .then(response => response.json())
+    .then(data => {
+      setCountryInfo(data);
+    });
+
+  }, []);
+
+
   // USEEFFECT runs a piece of code based on a given condition. It kind of reminds me of the while loop 
   useEffect(() => {
-
     const getCountriesData = async () => {
       // create an async/await function that fetches the data for the UI
       await fetch("https://disease.sh/v3/covid-19/countries")
@@ -24,6 +39,8 @@ function App() {
           name: country.country, // this provides the country
           value: country.countryInfo.iso2, // this provides the country ISO - an abbreviation of the country 
         }));
+
+        setTableData(data);
         setCountries(countries);
       });
     }
@@ -31,10 +48,27 @@ function App() {
     getCountriesData();
   }, []);
 
-  const onCountryChange = (event) => {
+  const onCountryChange = async (event) => {
     const countryCode = event.target.value;
     setCountry(countryCode);
-  }
+
+    const url = 
+      countryCode === 'worldwide'
+        ? "http://disease.sh/v3/covid-19/all"
+        : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+    
+    await fetch(url)
+    .then(response => response.json())
+    .then ((data) => {
+      // 
+      setCountry(countryCode);
+      // This stores all the data from the country response
+      setCountryInfo(data);
+    });
+
+  };
+
+  // console.log('countryInfoValue>>>>>',countryInfo);
 
   return (
     <div className="app"> 
@@ -49,17 +83,37 @@ function App() {
           </FormControl>
         </div>
         <div className="app__stats">
-          <InfoBox title="Coronavirus cases" cases = {1234} total = {2000} />
-          <InfoBox title="Recovered" cases = {1234} total = {5000} />
-          <InfoBox title="Deaths" cases = {1234} total = {3000} /> 
+
+          <InfoBox title="Coronavirus cases" 
+          cases = {countryInfo.todayCases} 
+          total = {countryInfo.cases} 
+          />
+          <InfoBox title="Recovered" 
+          cases = {countryInfo.todayRecovered} 
+          total = {countryInfo.recovered} 
+          />
+          <InfoBox title="Deaths" 
+          cases = {countryInfo.todayDeaths} 
+          total = {countryInfo.deaths} 
+          /> 
+
         </div>
             {/* Maps */}
-          <Map /> { /* This is the Map component */ }
-        </div>
+        <Map /> { /* This is the Map component */ }
+      </div>
       <Card className="app__right">
+        <CardContent>
+          <h3> Live Cases by Country</h3>
+          <h3> Total Cases by Country</h3>
+        </CardContent>
+          <h3>Live Cases by Country</h3>
+          <Table countries ={tableData} />
+
+          <h3>Worldwide new cases</h3>
         {/* Table */}
         {/* Graphs */}
       </Card>
+      
     </div>
   );
 }

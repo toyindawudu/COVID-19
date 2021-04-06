@@ -4,16 +4,50 @@
 
 .app{
 
+  display: flex;
+  justify-content: space-between;
+
   padding: 3rem;
   border: 2px solid red;
+
+  &__left{
+    flex: 0.9;
+    border: 2px solid purple;
+  }
 
   &__header{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2rem;
   }
 
   &__stats{
     display: flex;
     justify-content: space-between;
   }
+
+  &__right{
+    border: 2px solid pink;
+  }
+}
+
+
+@media (max-width: 990px) {
+  
+  .app {
+    flex-direction: column;
+  }
+
+}
+
+@media (max-width: 768px) {
+  
+  .app {
+    flex-direction: column;
+
+    &__stats {
+      margin-bottom: 2rem;
+    }
+  }
+
 }
