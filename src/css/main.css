@@ -43,6 +43,26 @@
   border: 2px solid pink;
 }
 
+.table {
+  height: 400px;
+  overflow: scroll;
+}
+
+.table tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: .275rem;
+}
+
+.table tr:nth-of-type(odd) {
+  background-color: #b36a3f;
+  color: #fff;
+}
+
 @media (max-width: 990px) {
   .app {
     -webkit-box-orient: vertical;

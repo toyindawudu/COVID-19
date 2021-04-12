@@ -31,13 +31,27 @@
   }
 }
 
+.table {
+  height: 400px;
+  overflow: scroll;
+  
+  tr{
+    display: flex;
+    justify-content: space-between;
+    padding: .275rem;
+  }
+
+  tr:nth-of-type(odd){
+    background-color: rgb(179, 106, 63);
+    color: #fff;
+  }
+}
 
 @media (max-width: 990px) {
   
   .app {
     flex-direction: column;
   }
-
 }
 
 @media (max-width: 768px) {
@@ -49,5 +63,4 @@
       margin-bottom: 2rem;
     }
   }
-
 }

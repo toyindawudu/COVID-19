@@ -5,9 +5,10 @@ import {
   MenuItem,
   Card,
   CardContent } from '@material-ui/core';
-import InfoBox from './InfoBox';
-import Map from './Map';
-import Table from './Table';
+import InfoBox from './components/InfoBox';
+import Map from './components/Map';
+import Table from './components/Table';
+import {sortData} from "./utilities";
 import './css/main.css';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           value: country.countryInfo.iso2, // this provides the country ISO - an abbreviation of the country 
         }));
 
+        const sortedData = sortData(data);
         setTableData(data);
         setCountries(countries);
       });
@@ -104,12 +106,9 @@ function App() {
       <Card className="app__right">
         <CardContent>
           <h3> Live Cases by Country</h3>
+          <Table countries ={tableData} />
           <h3> Total Cases by Country</h3>
         </CardContent>
-          <h3>Live Cases by Country</h3>
-          <Table countries ={tableData} />
-
-          <h3>Worldwide new cases</h3>
         {/* Table */}
         {/* Graphs */}
       </Card>
