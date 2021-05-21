@@ -16,8 +16,7 @@ function App() {
   const [countries, setCountries] = useState([]); // This creates the default value to be an empty array due to the empty curly braces
   const [global, setCountry] = useState("global");
   const [countryInfo, setCountryInfo] = useState({}); // This creates the default value to be an empty object due to the empty curly braces
-  const [tableData, setTableData] = useState([]);
-
+  const [tableData, setTableData] = useState([]); // This creates an empty object 
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -27,7 +26,6 @@ function App() {
     });
 
   }, []);
-
 
   // USEEFFECT runs a piece of code based on a given condition. It kind of reminds me of the while loop 
   useEffect(() => {
@@ -67,10 +65,7 @@ function App() {
       // This stores all the data from the country response
       setCountryInfo(data);
     });
-
   };
-
-  // console.log('countryInfoValue>>>>>',countryInfo);
 
   return (
     <div className="app"> 
@@ -98,9 +93,7 @@ function App() {
           cases = {countryInfo.todayDeaths} 
           total = {countryInfo.deaths} 
           /> 
-
         </div>
-            {/* Maps */}
         <Map /> { /* This is the Map component */ }
       </div>
       <Card className="app__right">
@@ -108,9 +101,8 @@ function App() {
           <h3> Live Cases by Country</h3>
           <Table countries ={tableData} />
           <h3> Total Cases by Country</h3>
+          {/* Insert a linr graph*/}
         </CardContent>
-        {/* Table */}
-        {/* Graphs */}
       </Card>
       
     </div>
