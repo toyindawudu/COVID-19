@@ -9,6 +9,7 @@ import InfoBox from './components/InfoBox';
 import Map from './components/Map';
 import Table from './components/Table';
 import {sortData} from "./utilities";
+import LineGraph from './components/LineGraph';
 import './css/main.css';
 
 function App() {
