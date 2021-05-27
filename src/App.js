@@ -102,7 +102,8 @@ function App() {
           <h3> Live Cases by Country</h3>
           <Table countries ={tableData} />
           <h3> Total Cases by Country</h3>
-          {/* Insert a linr graph*/}
+          <LineGraph />
+          {/* Insert a line graph*/}
         </CardContent>
       </Card>
       
