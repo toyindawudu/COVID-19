@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { Line } from "react-chartjs-2";
 
 function LineGraph() {
@@ -18,11 +18,11 @@ function LineGraph() {
   return (
     <div>
     <h1>I am a graph</h1>
-    {/*<Line 
+    <Line 
     data 
     options 
     />
-    */}
+  
     </div>
   )
 }
